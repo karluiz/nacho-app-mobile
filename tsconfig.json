@@ -5,6 +5,11 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
     "lib": ["dom", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*", "types/*"]
+    },
+    "typeRoots": ["./types", "./node_modules/@types"],
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
@@ -22,4 +27,5 @@
     "forceConsistentCasingInFileNames": true,
     "downlevelIteration": true
   },
+  "exclude": ["node_modules", "types"]
 }

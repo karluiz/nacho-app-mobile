@@ -43,11 +43,11 @@ const components = {
   },
 
   Button: {
-    baseStyle: ({ colorMode }: IColorMode) => ({
+    baseStyle: {
       _text: {
-        color: colorMode === "dark" ? "white" : "red",
+        color: "white",
       },
-    }),
+    },
     defaultProps: {
       colorScheme: "primary",
     },

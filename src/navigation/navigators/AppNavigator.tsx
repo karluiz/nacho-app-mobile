@@ -1,8 +1,7 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { IScreen } from "../Router";
 import { APP_STACK_SCREENS_NAMES } from "../../lib/constants/screen";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Activities, Lists, Profile } from "../../screens/Main";
 
 type IScreens = Array<IScreen>;
@@ -21,13 +20,12 @@ export const APP_STACK_SCREENS: IScreens = [
   },
 ];
 
-// const { Navigator, Screen } = createDrawerNavigator();
-const { Navigator, Screen } = createStackNavigator();
+const { Navigator, Screen } = createDrawerNavigator();
 
 const AppNavigator = () => (
-  <Navigator>
+  <Navigator initialRouteName={APP_STACK_SCREENS_NAMES.Profile}>
     {APP_STACK_SCREENS.map(({ name, component, headerShown }) => {
-      const options = { headerShown: headerShown || false };
+      const options = { headerShown: headerShown || true };
       return <Screen key={name} {...{ name, component, options }} />;
     })}
   </Navigator>

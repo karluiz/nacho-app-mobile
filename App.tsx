@@ -13,6 +13,14 @@ import nativeBaseProviderConfig from "./src/config/nativeBaseProvider";
 import { ApolloProvider } from "@apollo/client";
 import client from "./src/config/apolloClient";
 
+import * as Localization from "expo-localization";
+import i18n from "i18n-js";
+import languages from "./src/lib/i18n/languages";
+
+i18n.fallbacks = true;
+i18n.translations = languages;
+i18n.locale = Localization.locale;
+
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
@@ -36,8 +44,6 @@ export default function App() {
       }
     },
   };
-
-  // const Drawer = createDrawerNavigator();
 
   if (!isLoadingComplete) return null;
 

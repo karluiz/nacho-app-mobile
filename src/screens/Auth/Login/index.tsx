@@ -14,6 +14,7 @@ import {
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import i18n from "i18n-js";
 import ToggleThemeButton from "../../../components/Buttons/ToggleThemeButton";
 import Input from "../../../components/Inputs/Input";
 import { AUTH_STACK_SCREENS_NAMES } from "../../../lib/constants/screen";
@@ -51,9 +52,9 @@ const Login = () => {
     >
       <Box py={5} px={5} rounded="xl" w="80%">
         <Box safeArea p={2} w="100%" mx="auto">
-          <Heading size="lg">¡Bienvenido!</Heading>
+          <Heading size="lg">{i18n.t("welcome")}</Heading>
           <Heading color="muted.400" size="xs">
-            Inicia sesión para continuar
+            {i18n.t("loginSubtitle")}
           </Heading>
 
           <Column space={2} mt={5}>
@@ -62,11 +63,11 @@ const Login = () => {
               render={({ field, fieldState: { error } }) => (
                 <Input
                   {...field}
-                  label="Correo"
-                  placeholder="tu@correo.com"
-                  onChangeText={field.onChange}
+                  label={i18n.t("email")}
+                  placeholder={i18n.t("emailPlaceholder")}
+                  onChangeText={(v) => field.onChange(v.replace(/\s/g, ""))}
                   leftIcon={<Ionicons name="mail" color="gray.300" />}
-                  error={error && (error?.message || "¿Cuál es tu correo?")}
+                  error={error && (error?.message || i18n.t("emailError"))}
                 />
               )}
               name="email"
@@ -74,7 +75,7 @@ const Login = () => {
                 required: true,
                 pattern: {
                   value: EMAIL_REGEX,
-                  message: "Email inválido",
+                  message: i18n.t("emailInvalid"),
                 },
               }}
             />
@@ -84,11 +85,13 @@ const Login = () => {
               render={({ field, fieldState: { error } }) => (
                 <Input
                   {...field}
-                  label="Contraseña"
+                  label={i18n.t("password")}
                   placeholder="*********"
                   onChangeText={field.onChange}
                   leftIcon={<Ionicons name="lock-closed" color="gray.300" />}
-                  error={error && (error?.message || "¿Cuál es tu contraseña?")}
+                  error={
+                    error && (error?.message || i18n.t("passwordMissingError"))
+                  }
                 />
               )}
               name="password"
@@ -102,11 +105,13 @@ const Login = () => {
               alignSelf="flex-end"
               mt={1}
             >
-              ¿Olvidaste tu contraseña?
+              {i18n.t("forgotPassword")}
             </Box>
 
             <Column space={2}>
-              <Button onPress={handleSubmit(onSubmit)}>Sign in</Button>
+              <Button onPress={handleSubmit(onSubmit)}>
+                {`${i18n.t("signIn")}`}
+              </Button>
 
               <Row justifyContent="center" alignItems="center">
                 <IconButton
@@ -141,13 +146,14 @@ const Login = () => {
 
             <Row justifyContent="center">
               <Text fontSize="sm" color="muted.700" fontWeight={400}>
-                Soy nuevo.
+                {i18n.t("registerMessage")}
+                .
                 {" "}
               </Text>
 
               <TouchableOpacity onPress={onRegister}>
                 <Text fontSize="sm" bold underline>
-                  Registrarme
+                  {i18n.t("registerLink")}
                   {" "}
                 </Text>
               </TouchableOpacity>
