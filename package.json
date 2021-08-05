@@ -11,7 +11,8 @@
     "lint": "eslint src/**/*.{ts,tsx} --fix --no-error-on-unmatched-pattern",
     "lint:noFix": "eslint src/**/*.{ts,tsx} --no-error-on-unmatched-pattern",
     "build:android": "expo build:android",
-    "prettier": "prettier --write src/**/*.{ts,tsx} __tests__/**/*.{ts,tsx}"
+    "prettier": "prettier --write src/**/*.{ts,tsx} __tests__/**/*.{ts,tsx}",
+    "prepare": "husky install"
   },
   "jest": {
     "preset": "jest-expo"
