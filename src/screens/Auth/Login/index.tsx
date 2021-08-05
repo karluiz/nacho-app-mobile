@@ -24,8 +24,6 @@ import { useAuth } from "../../../lib/context/auth/auth.provider";
 interface IForm {
   email: string;
   password: string;
-  test?: string;
-  testt: number;
 }
 
 const Login = () => {
