@@ -83,7 +83,6 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "prettier --write",
-      "yarn run lint:fix",
       "yarn run lint"
     ]
   }
