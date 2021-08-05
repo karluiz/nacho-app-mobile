@@ -4,9 +4,12 @@ export const LOADING_STACK_SCREENS_NAMES = {
 
 export const AUTH_STACK_SCREENS_NAMES = {
   Login: "Login",
+  Register: "Register",
 };
 
 export const APP_STACK_SCREENS_NAMES = {
   Loading: "Loading",
-  Home: "Home",
+  Activities: "Activities",
+  Lists: "Lists",
+  Profile: "Profile",
 };

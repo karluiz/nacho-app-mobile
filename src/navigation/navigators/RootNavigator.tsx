@@ -2,10 +2,10 @@
 
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { View, Text } from "native-base";
 import { useAuth } from "../../lib/context/auth/auth.provider";
 import AppNavigator from "./AppNavigator";
 import AuthNavigator from "./AuthNavigator";
-import { Text, View } from "../../theme";
 import layout from "../../lib/constants/layout";
 
 const RootStack = createStackNavigator();

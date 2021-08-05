@@ -1,13 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useContext,
-  Children,
-  isValidElement,
-  FC,
-  cloneElement,
-} from "react";
+import React, { useState, useEffect, useMemo, useContext, FC } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { useApolloClient } from "@apollo/client";
 import AuthContext from "./auth.context";
@@ -80,17 +71,7 @@ const AuthProvider: FC = ({ children }) => {
   );
 
   return (
-    <AuthContext.Provider value={authContext}>
-      {Children.map(children, (child) => {
-        if (isValidElement(child)) {
-          return cloneElement<IRootNavigator>(child, {
-            userToken,
-            loading,
-          });
-        }
-        return child;
-      })}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>
   );
 };
 

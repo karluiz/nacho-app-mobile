@@ -18,25 +18,23 @@ import ToggleThemeButton from "../../../components/Buttons/ToggleThemeButton";
 import Input from "../../../components/Inputs/Input";
 import { AUTH_STACK_SCREENS_NAMES } from "../../../lib/constants/screen";
 import { EMAIL_REGEX } from "../../../lib/constants/system";
-import { useAuth } from "../../../lib/context/auth/auth.provider";
 
 interface IForm {
   email: string;
   password: string;
+  passwordConfirm: string;
 }
 
-const Login = () => {
+const Register = () => {
   const { navigate } = useNavigation();
-  const { signIn } = useAuth();
-  const { handleSubmit, control } = useForm<IForm>();
+  const { handleSubmit, control, getValues } = useForm<IForm>();
 
   const onSubmit = (values: IForm) => {
     console.warn("values: ", values);
-    signIn("token");
   };
 
-  const onRegister = () => {
-    navigate(AUTH_STACK_SCREENS_NAMES.Register);
+  const onLogin = () => {
+    navigate(AUTH_STACK_SCREENS_NAMES.Login);
   };
 
   return (
@@ -51,9 +49,9 @@ const Login = () => {
     >
       <Box py={5} px={5} rounded="xl" w="80%">
         <Box safeArea p={2} w="100%" mx="auto">
-          <Heading size="lg">¡Bienvenido!</Heading>
+          <Heading size="lg">Registro</Heading>
           <Heading color="muted.400" size="xs">
-            Inicia sesión para continuar
+            Crea tu cuenta con tu correo y contraseña
           </Heading>
 
           <Column space={2} mt={5}>
@@ -97,16 +95,30 @@ const Login = () => {
               }}
             />
 
-            <Box
-              _text={{ fontSize: "xs", fontWeight: "700" }}
-              alignSelf="flex-end"
-              mt={1}
-            >
-              ¿Olvidaste tu contraseña?
-            </Box>
+            <Controller
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <Input
+                  {...field}
+                  label="Confirmar contraseña"
+                  placeholder="*********"
+                  onChangeText={field.onChange}
+                  leftIcon={<Ionicons name="lock-closed" color="gray.300" />}
+                  error={
+                    error
+                    && (error?.message || "Ambas contraseñas deben ser iguales")
+                  }
+                />
+              )}
+              name="passwordConfirm"
+              rules={{
+                required: true,
+                validate: (v) => v === getValues("password"),
+              }}
+            />
 
             <Column space={2}>
-              <Button onPress={handleSubmit(onSubmit)}>Sign in</Button>
+              <Button onPress={handleSubmit(onSubmit)}>Registarme</Button>
 
               <Row justifyContent="center" alignItems="center">
                 <IconButton
@@ -141,13 +153,13 @@ const Login = () => {
 
             <Row justifyContent="center">
               <Text fontSize="sm" color="muted.700" fontWeight={400}>
-                Soy nuevo.
+                ¡Ya tengo cuenta!
                 {" "}
               </Text>
 
-              <TouchableOpacity onPress={onRegister}>
+              <TouchableOpacity onPress={onLogin}>
                 <Text fontSize="sm" bold underline>
-                  Registrarme
+                  Iniciar sesión
                   {" "}
                 </Text>
               </TouchableOpacity>
@@ -161,4 +173,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

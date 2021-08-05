@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "../../screens/Auth";
 import { IScreen } from "../Router";
 import { AUTH_STACK_SCREENS_NAMES } from "../../lib/constants/screen";
+import Register from "../../screens/Auth/Register";
 
 type IScreens = Array<IScreen>;
 export type IAuthScreens = Array<IScreen>;
@@ -10,6 +11,10 @@ export const AUTH_STACK_SCREENS: IScreens = [
   {
     name: AUTH_STACK_SCREENS_NAMES.Login,
     component: Login,
+  },
+  {
+    name: AUTH_STACK_SCREENS_NAMES.Register,
+    component: Register,
   },
 ];
 

@@ -4,9 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ASYNC_STORAGE_ITEMS } from "../lib/constants/asyncStorage";
 
 const httpLink = new HttpLink({
-  uri: "https://backend-qmobility.azurewebsites.net/graphql/",
-  // uri: "https://3706b529c93c.ngrok.io/graphql",
-  // uri: "https://karluiz.ngrok.io/graphql",
+  uri: "https://nest-generic-backend.ndrz.io/graphql",
 });
 
 const authLink = setContext(async (_, { headers }) => {
