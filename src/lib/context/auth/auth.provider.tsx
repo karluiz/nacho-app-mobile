@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo, useContext, FC } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { useApolloClient } from "@apollo/client";
 import AuthContext from "./auth.context";
 import { ASYNC_STORAGE_ITEMS } from "../../constants/asyncStorage";
+import { useProfile } from "../profile/profile.provider";
+import { useApolloClient } from "@apollo/client";
 
 export type TUserToken = string | null;
 
@@ -12,14 +13,23 @@ export interface IRootNavigator {
 }
 
 const AuthProvider: FC = ({ children }) => {
+  const { setUser, cleanUser } = useProfile();
+
   const [userToken, setUserToken] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
-  // const client = useApolloClient();
+  const client = useApolloClient();
 
   const signOut = async () => {
-    await AsyncStorage.removeItem(ASYNC_STORAGE_ITEMS.USER_TOKEN);
-    await AsyncStorage.removeItem(ASYNC_STORAGE_ITEMS.HAS_ACCEPTED_TCS);
-    // client.resetStore();
+    // * Clean async storage
+    await AsyncStorage.removeItem(ASYNC_STORAGE_ITEMS.ACCESS_TOKEN);
+
+    // * Clean user from provider
+    cleanUser();
+
+    // * Reset Apollo's store
+    client.resetStore();
+
+    // * Reset token
     setUserToken("");
   };
 
@@ -29,13 +39,18 @@ const AuthProvider: FC = ({ children }) => {
       let newUserToken: TUserToken = null;
       try {
         newUserToken = await AsyncStorage.getItem(
-          ASYNC_STORAGE_ITEMS.USER_TOKEN,
+          ASYNC_STORAGE_ITEMS.ACCESS_TOKEN,
         );
       } catch (error) {
         console.error("error: ", error);
       } finally {
         setUserToken(newUserToken || "");
         setLoading(false);
+
+        // * When there's accesstoken, get user info
+        if (newUserToken) {
+          setUser();
+        }
       }
     };
 
@@ -50,7 +65,7 @@ const AuthProvider: FC = ({ children }) => {
           const doSignIn = async () => {
             try {
               await AsyncStorage.setItem(
-                ASYNC_STORAGE_ITEMS.USER_TOKEN,
+                ASYNC_STORAGE_ITEMS.ACCESS_TOKEN,
                 token || "",
               );
               setUserToken(token || "");

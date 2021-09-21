@@ -3,9 +3,14 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { IScreen } from "../Router";
 import { APP_STACK_SCREENS_NAMES } from "../../lib/constants/screen";
 import { Activities, Lists, Profile } from "../../screens/Main";
+import LogginOut from "../../screens/Main/LogginOut";
 
 type IScreens = Array<IScreen>;
 export const APP_STACK_SCREENS: IScreens = [
+  {
+    name: APP_STACK_SCREENS_NAMES.LogginOut,
+    component: LogginOut,
+  },
   {
     name: APP_STACK_SCREENS_NAMES.Activities,
     component: Activities,

@@ -8,7 +8,7 @@ export const AUTH_STACK_SCREENS_NAMES = {
 };
 
 export const APP_STACK_SCREENS_NAMES = {
-  Loading: "Loading",
+  LogginOut: "LogginOut",
   Activities: "Activities",
   Lists: "Lists",
   Profile: "Profile",
