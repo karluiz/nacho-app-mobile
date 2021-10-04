@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "../../screens/Auth";
 import { IScreen } from "../Router";
-import { AUTH_STACK_SCREENS_NAMES } from "../../lib/constants/screen";
+import { AUTH_STACK_SCREENS_NAMES } from "../../lib/constants/screens";
 import Register from "../../screens/Auth/Register";
 
 type IScreens = Array<IScreen>;

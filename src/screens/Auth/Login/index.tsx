@@ -17,7 +17,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import i18n from "i18n-js";
 import ToggleThemeButton from "../../../components/Buttons/ToggleThemeButton";
 import Input from "../../../components/Inputs/Input";
-import { AUTH_STACK_SCREENS_NAMES } from "../../../lib/constants/screen";
+import { AUTH_STACK_SCREENS_NAMES } from "../../../lib/constants/screens";
 import { EMAIL_REGEX } from "../../../lib/constants/system";
 import { useAuth } from "../../../lib/context/auth/auth.provider";
 

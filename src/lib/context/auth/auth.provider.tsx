@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo, useContext, FC } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useApolloClient } from "@apollo/client";
 import AuthContext from "./auth.context";
 import { ASYNC_STORAGE_ITEMS } from "../../constants/asyncStorage";
 import { useProfile } from "../profile/profile.provider";
-import { useApolloClient } from "@apollo/client";
 
 export type TUserToken = string | null;
 

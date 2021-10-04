@@ -11,8 +11,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ASYNC_STORAGE_ITEMS } from "../lib/constants/asyncStorage";
 import { gqlUser } from "../gql";
 
-import * as RootNavigation from "../navigation/lib/rootNavigator";
-import { APP_STACK_SCREENS_NAMES } from "../lib/constants/screen";
+import * as RootNavigation from "../lib/navigation";
+import { APP_STACK_SCREENS_NAMES } from "../lib/constants/screens";
 import {
   IRefreshAccessTokenInput,
   IRefreshAccessTokenRes,
@@ -69,12 +69,12 @@ const onErrorLink = onError((params) => {
   const { graphQLErrors, operation, forward } = params;
   graphQLErrors?.forEach((err) => {
     // * Log error nicely
-    let error = `\nGQL ERROR {\n`;
+    let error = "\nGQL ERROR {\n";
     error += `    message: ${err.message}\n`;
     error += `    operation: ${operation.operationName}\n`;
     error += `    query: ${JSON.stringify(err.path)}\n`;
     error += `    variables: ${JSON.stringify(operation.variables)}\n`;
-    error += `}\n`;
+    error += "}\n";
     console.error(error);
 
     if (err?.extensions?.exception?.status) {
@@ -87,7 +87,11 @@ const onErrorLink = onError((params) => {
           break;
         case 401:
           // * If unauthorized, try to refresh token
-          return fromPromise(getNewToken().catch(() => {}))
+          return fromPromise(
+            getNewToken().catch((e) => {
+              console.error("401 error ", e);
+            }),
+          )
             .filter((value) => !!value)
             .flatMap((accessToken) => {
               const oldHeaders = operation.getContext().headers;
