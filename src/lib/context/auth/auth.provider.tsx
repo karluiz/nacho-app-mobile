@@ -60,23 +60,19 @@ const AuthProvider: FC = ({ children }) => {
   // * Set contexts values
   const authContext = useMemo(
     () => ({
-      signIn: async (token?: string) =>
-        new Promise<void>((resolve, reject) => {
-          const doSignIn = async () => {
-            try {
-              await AsyncStorage.setItem(
-                ASYNC_STORAGE_ITEMS.ACCESS_TOKEN,
-                token || "",
-              );
-              setUserToken(token || "");
-              resolve();
-            } catch (error) {
-              console.error("error: ", error);
-              reject();
-            }
-          };
-
-          doSignIn();
+      signIn: (token?: string) =>
+        new Promise<void>(async (resolve, reject) => {
+          try {
+            await AsyncStorage.setItem(
+              ASYNC_STORAGE_ITEMS.ACCESS_TOKEN,
+              token || "",
+            );
+            setUserToken(token || "");
+            resolve();
+          } catch (error) {
+            console.error("error: ", error);
+            reject();
+          }
         }),
       signOut,
       userToken,

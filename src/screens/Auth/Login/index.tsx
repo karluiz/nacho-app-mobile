@@ -1,33 +1,34 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import i18n from "i18n-js";
 import {
   Box,
   Button,
   Center,
+  Column,
   Heading,
   Icon,
   IconButton,
-  Column,
   Row,
   Text,
 } from "native-base";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import i18n from "i18n-js";
 import ToggleThemeButton from "../../../components/Buttons/ToggleThemeButton";
 import Input from "../../../components/Inputs/Input";
 import { AUTH_STACK_SCREENS_NAMES } from "../../../lib/constants/screens";
 import { EMAIL_REGEX } from "../../../lib/constants/system";
 import { useAuth } from "../../../lib/context/auth/auth.provider";
+import { Nav } from "../../../navigation/types/NavPropsTypes";
 
 interface IForm {
   email: string;
   password: string;
 }
 
-const Login = () => {
-  const { navigate } = useNavigation();
+function Login() {
+  const { navigate } = useNavigation<Nav>();
   const { signIn } = useAuth();
   const { handleSubmit, control } = useForm<IForm>();
 
@@ -37,7 +38,7 @@ const Login = () => {
   };
 
   const onRegister = () => {
-    navigate(AUTH_STACK_SCREENS_NAMES.Register);
+    navigate(AUTH_STACK_SCREENS_NAMES.Register as any);
   };
 
   return (
@@ -165,6 +166,6 @@ const Login = () => {
       <ToggleThemeButton />
     </Center>
   );
-};
+}
 
 export default Login;

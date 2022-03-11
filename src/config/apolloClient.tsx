@@ -77,8 +77,9 @@ const onErrorLink = onError((params) => {
     error += "}\n";
     console.error(error);
 
-    if (err?.extensions?.exception?.status) {
-      switch (err.extensions.exception.status) {
+    const { status } = err?.extensions?.exception as { status: number };
+    if (status) {
+      switch (status) {
         case 422:
           // * If invalid refresh token, sign out
           RootNavigation.navigate("AppNavigator", {

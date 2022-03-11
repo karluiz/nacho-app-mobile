@@ -12,7 +12,7 @@ interface ILoadingScreen extends IBoxProps {
   isFullScreen?: boolean;
 }
 
-export const LoadingScreen = (props: ILoadingScreen) => {
+export function LoadingScreen(props: ILoadingScreen) {
   const { iconH = 110, iconW = 110, isFullScreen = true, ...boxProps } = props;
 
   const { colorMode } = useColorMode();
@@ -41,4 +41,4 @@ export const LoadingScreen = (props: ILoadingScreen) => {
       />
     </Center>
   );
-};
+}

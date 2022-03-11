@@ -14,7 +14,9 @@ export default function Activities() {
   const colorScheme = useColorScheme();
   return (
     <BottomTabNavigator.Navigator
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      screenOptions={{
+        tabBarActiveTintColor: Colors[colorScheme].tint,
+      }}
     >
       <BottomTabNavigator.Screen
         name="Home"

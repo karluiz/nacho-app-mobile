@@ -5,7 +5,7 @@ import { useAuth } from "../../../lib/context/auth/auth.provider";
 
 // TODO make a "You've been logged out :S" screen
 
-const LogginOut = () => {
+function LogginOut() {
   const { signOut } = useAuth();
 
   useEffect(() => {
@@ -13,6 +13,6 @@ const LogginOut = () => {
   }, []);
 
   return <LoadingScreen />;
-};
+}
 
 export default LogginOut;

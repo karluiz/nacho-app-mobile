@@ -2,7 +2,7 @@ import * as React from "react";
 import { Icon, IconButton, useColorMode } from "native-base";
 import { Feather } from "@expo/vector-icons";
 
-const ToggleThemeButton = () => {
+function ToggleThemeButton() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
@@ -23,6 +23,6 @@ const ToggleThemeButton = () => {
       )}
     />
   );
-};
+}
 
 export default ToggleThemeButton;

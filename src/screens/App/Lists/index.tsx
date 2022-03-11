@@ -3,7 +3,7 @@ import * as React from "react";
 import { Button } from "react-native";
 import { TDrawerScreenNavProps } from "../../../navigation/types/NavPropsTypes";
 
-const Lists = (props: TDrawerScreenNavProps) => {
+function Lists(props: TDrawerScreenNavProps) {
   const { navigation } = props;
 
   return (
@@ -13,6 +13,6 @@ const Lists = (props: TDrawerScreenNavProps) => {
       <Button title="Open" onPress={() => navigation.openDrawer()} />
     </Box>
   );
-};
+}
 
 export default Lists;

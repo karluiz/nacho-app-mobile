@@ -18,7 +18,7 @@ export interface IRouter {
   colorScheme: ColorSchemeName;
 }
 
-const Router = (props: IRouter) => {
+function Router(props: IRouter) {
   const { colorScheme } = props;
 
   return (
@@ -28,6 +28,6 @@ const Router = (props: IRouter) => {
       <RootNavigator />
     </NavigationContainer>
   );
-};
+}
 
 export default Router;

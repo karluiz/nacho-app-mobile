@@ -10,27 +10,28 @@ import layout from "../../lib/constants/layout";
 
 const RootStack = createStackNavigator();
 
-const LoadingScreen = () => (
-  <View
-    style={{
-      height: layout.window.height,
-      width: layout.window.width,
-      justifyContent: "center",
-      alignItems: "center",
-    }}
-  >
-    <Text>Loading...</Text>
-  </View>
-);
+function LoadingScreen() {
+  return (
+    <View
+      style={{
+        height: layout.window.height,
+        width: layout.window.width,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text>Loading...</Text>
+    </View>
+  );
+}
 
-const RootNavigator = () => {
+function RootNavigator() {
   const { userToken, authLoading } = useAuth();
+  console.log("userToken: ", userToken);
 
   return (
     <RootStack.Navigator
-      headerMode="none"
-      screenOptions={{ animationEnabled: false }}
-      mode="modal"
+      screenOptions={{ animationEnabled: false, headerShown: false }}
     >
       {authLoading ? (
         <RootStack.Screen name="Loading" component={LoadingScreen} />
@@ -41,6 +42,6 @@ const RootNavigator = () => {
       )}
     </RootStack.Navigator>
   );
-};
+}
 
 export default RootNavigator;

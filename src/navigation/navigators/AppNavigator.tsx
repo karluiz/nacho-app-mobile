@@ -27,13 +27,18 @@ export const APP_STACK_SCREENS: IScreens = [
 
 const { Navigator, Screen } = createDrawerNavigator();
 
-const AppNavigator = () => (
-  <Navigator initialRouteName={APP_STACK_SCREENS_NAMES.Profile}>
-    {APP_STACK_SCREENS.map(({ name, component, headerShown }) => {
-      const options = { headerShown: headerShown || true };
-      return <Screen key={name} {...{ name, component, options }} />;
-    })}
-  </Navigator>
-);
+function AppNavigator() {
+  return (
+    <Navigator
+      initialRouteName={APP_STACK_SCREENS_NAMES.Activities}
+      useLegacyImplementation
+    >
+      {APP_STACK_SCREENS.map(({ name, component, headerShown }) => {
+        const options = { headerShown: headerShown || true };
+        return <Screen key={name} {...{ name, component, options }} />;
+      })}
+    </Navigator>
+  );
+}
 
 export default AppNavigator;

@@ -28,3 +28,7 @@ export type TAllNavProps = TRegularScreenNavProps &
   TDrawerScreenNavProps &
   TLoginNavProps &
   THomeNavProps;
+
+export type Nav = {
+  navigate: (value: string) => void;
+};

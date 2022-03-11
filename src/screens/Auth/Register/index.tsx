@@ -26,7 +26,7 @@ interface IForm {
   passwordConfirm: string;
 }
 
-const Register = () => {
+function Register() {
   const { navigate } = useNavigation();
   const { handleSubmit, control, getValues } = useForm<IForm>();
 
@@ -175,6 +175,6 @@ const Register = () => {
       <ToggleThemeButton />
     </Center>
   );
-};
+}
 
 export default Register;
